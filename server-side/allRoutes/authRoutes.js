@@ -5,9 +5,9 @@ const {userAuthentication}=require("../middleware/userAuthentication")
 
 
 router 
-.get("/fetchusers",users.fetchUsers)
+.get("/fetchusers",userAuthentication,users.fetchUsers)
 .post("/registeruser",users.registerUser)
-.post("/login",userAuthentication,users.loginUser)
+.post("/login",users.loginUser)
 
 
 module.exports=router

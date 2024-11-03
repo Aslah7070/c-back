@@ -48,7 +48,7 @@ const registerUser=async(req,res)=>{
 }
 const loginUser=async(req,res)=>{
   try {
-    const {value,error}=  loginJoi.validate(req.body);
+    const {value,error}= loginJoi.validate(req.body);
   if(error){
     return res.status(400).json({status:"validation Error",message:error.details})
   }
@@ -61,8 +61,8 @@ if(!matching){
 }
 console.log(registeredUser._id);
 
-const userToken=jwt.sign({id:registeredUser._id,email:registeredUser.email,username:registeredUser.username},userSecretId,{expiresIn:"10"})
-const userRefreshToken=jwt.sign({id:registeredUser._id,email:registeredUser.email,username:registeredUser.username},userSecretId,{expiresIn:"10"})
+const userToken=jwt.sign({id:registeredUser._id,email:registeredUser.email,username:registeredUser.username},userSecretId,{expiresIn:"10m"})
+const userRefreshToken=jwt.sign({id:registeredUser._id,email:registeredUser.email,username:registeredUser.username},userSecretId,{expiresIn:"10m"})
 res.cookie("userToken",userToken,{
     httpOnly:true,
     secure:true,
